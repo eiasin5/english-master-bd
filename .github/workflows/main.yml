@@ -33,7 +33,7 @@ jobs:
       - name: Copy Flutter app code
         run: |
           mkdir -p lib
-          cp Lib/lib/main.dart lib/main.dart
+          cp Lib/main.dart lib/main.dart
       - name: Prepare assets folder
         run: mkdir -p assets/data && touch assets/data/.gitkeep
 
