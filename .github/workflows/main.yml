@@ -31,7 +31,10 @@ jobs:
 
       - name: Create Android project files
         run: flutter create --platforms=android .
-
+      - name: Copy Flutter app code
+        run: |
+          mkdir -p lib
+          cp Lib/lib/main.dart lib/main.dart
       - name: Prepare assets folder
         run: mkdir -p assets/data && touch assets/data/.gitkeep
 
