@@ -32,8 +32,17 @@ jobs:
         run: flutter create --platforms=android .
       - name: Copy Flutter app code
         run: |
+          SOURCE_FILE=$(find . -type f -iname "main.dart" ! -path "./lib/main.dart" ! -path "./.git/*" | head -n 1)
+
+          if [ -z "$SOURCE_FILE" ]; then
+            echo "ERROR: Original main.dart not found"
+            find . -maxdepth 5 -type f
+            exit 1
+          fi
+
+          echo "Found source file: $SOURCE_FILE"
           mkdir -p lib
-          cp Lib/main.dart lib/main.dart
+          cp "$SOURCE_FILE" lib/main.dart
       - name: Prepare assets folder
         run: mkdir -p assets/data && touch assets/data/.gitkeep
 
